@@ -10,8 +10,16 @@ namespace BPE3HL_Feleves_feladat
     {
         static void Main(string[] args)
         {
-            PlayerReader pr = new PlayerReader();
+            CategoryReader cr = new CategoryReader();
+            var categories = cr.readCategories();
 
+            if(cr.isCategoriesOverlapping(categories))
+            {
+                Console.WriteLine("A kategóriák összeérnek");
+                Application.Exit();
+            }
+
+            PlayerReader pr = new PlayerReader();
             pr.readPlayers();
         }
     }
