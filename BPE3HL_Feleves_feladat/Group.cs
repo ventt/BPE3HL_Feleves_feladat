@@ -8,6 +8,20 @@ namespace BPE3HL_Feleves_feladat
 {
     class Group
     {
-        List<Playe>
+        public List<Player> players = new List<Player>();
+        public Category category;
+     
+        public bool canBeStarted()
+        {
+            
+            for (int i = 0; i < 100; i++)
+            {
+                if (players.Count == (int) Math.Pow(2, i))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }   
     }
 }

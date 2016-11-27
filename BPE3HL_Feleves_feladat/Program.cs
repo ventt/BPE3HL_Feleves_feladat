@@ -24,6 +24,8 @@ namespace BPE3HL_Feleves_feladat
 
             PlayerReader pr = new PlayerReader();
             pr.readPlayers();
+
+
         }
     }
 }
