@@ -9,11 +9,44 @@ namespace BPE3HL_Feleves_feladat
 {
     class PlayerReader
     {
-        private const string PLAYERS_FILE = "players.txt";               //Beolvasó
-        private const string TACTICS_FILE = "tactics.txt";
+        private const string PLAYERS_FILE = "players.txt";               //alap
+        private const string TACTICS_FILE = "tactics.txt";               //fájlok
+
+        /// <summary>
+        /// Beolvassa a player fáljból a játékosok nevét, életkorát és ID-ját, majd ID szerint csatolja a taktikákat.
+        /// </summary>
+        /// <returns>Egy player listát</returns>
+        public List<Player> readPlayers()
+        {
+            var tactics = readTactics();
+            int count = 0;
+            List<Player> players = new List<Player>();
+            foreach (string line in File.ReadLines(PLAYERS_FILE))
+            {
+                if (count++ == 0) continue;   //segéd változó, hogy az első elemet ne mentse az a program
+                if (line == null) continue;
+                Player player = new Player();
+                string[] str = splitString(line, '|', 3);
+                if (str[0] == null || str[1] == null || str[2] == null) continue;   //ellenörzi hogy az str tömb egyik eleme se null
+                player.name = str[0];
+                player.age = int.Parse(str[1]);
+                player.id = str[2];
 
 
-        public List<Tactic> readTactics()
+                foreach (var tactic in tactics)            //hozzá adja ID szerint a player listába a taktikákat
+                {
+                    if (player.id == tactic.playerId)
+                    {
+                        player.tactic = tactic;
+                    }
+                }
+
+                players.Add(player);
+            }
+            return players;
+        }
+
+        private List<Tactic> readTactics()
         {
             List<Tactic> tactics = new List<Tactic>();
             foreach (string line in File.ReadLines(TACTICS_FILE))

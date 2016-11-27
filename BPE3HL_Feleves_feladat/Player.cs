@@ -13,6 +13,8 @@ namespace BPE3HL_Feleves_feladat
         public int age;
         public Tactic tactic;
 
+        public Player() { }
+
         public Player(string id, string name, int age, Tactic tactic)
         {
             this.id = id;
