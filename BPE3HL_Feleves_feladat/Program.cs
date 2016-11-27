@@ -16,8 +16,11 @@ namespace BPE3HL_Feleves_feladat
             if(cr.isCategoriesOverlapping(categories))
             {
                 Console.WriteLine("A kategóriák összeérnek");
-                Application.Exit();
+                Console.ReadKey();
             }
+            Console.WriteLine("Játékosok és taktikák sikeresen beolvasva!");
+            Console.WriteLine("Nincs átfedő kategória!");
+            Console.ReadKey();
 
             PlayerReader pr = new PlayerReader();
             pr.readPlayers();

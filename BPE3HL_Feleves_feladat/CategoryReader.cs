@@ -30,7 +30,7 @@ namespace BPE3HL_Feleves_feladat
             return categories;
         }
        
-        
+        //3. Feladat
         /// <summary>
         /// Ellenörzi hogy a kategóriák összeérnek-e
         /// </summary>
