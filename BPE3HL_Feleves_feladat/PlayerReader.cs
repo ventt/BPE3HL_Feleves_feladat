@@ -19,11 +19,13 @@ namespace BPE3HL_Feleves_feladat
             foreach (string line in File.ReadLines(TACTICS_FILE))
             {
                 Tactic tactic = new Tactic();
+                if (line == null) continue;
 
                 //szétdaraboljuk a sort két részre
                 string[] str = splitString(line, '|', 2);
                 tactic.playerId = str[0]; //playerId
 
+                if (str[1] == null) continue;
                 string[] szazalekok = splitString(str[1], '-', 3);
                 tactic.rock = double.Parse(szazalekok[0]);
                 tactic.paper = double.Parse(szazalekok[1]);
