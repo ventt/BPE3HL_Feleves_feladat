@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +10,7 @@ namespace BPE3HL_Feleves_feladat
     class Game
     {
         List<Group> groups;
+        StreamWriter file;
 
         public Game(List<Group> groups) {
             this.groups = groups;
@@ -54,6 +56,8 @@ namespace BPE3HL_Feleves_feladat
             }
             // p1Choosed == 2 && p2Choosed == 1
             return p2;
+
+
         }
 
         /// <summary>
@@ -62,7 +66,10 @@ namespace BPE3HL_Feleves_feladat
         /// <returns>Nyertes játékos</returns>
         public void start()
         {
-            foreach(Group group in groups) {
+            file = new StreamWriter("eredmeny.txt", false);
+
+            foreach (Group group in groups) {
+                
                 // Ha a csoport nem indithato
                 if(!group.canBeStarted())
                     continue;
@@ -70,9 +77,9 @@ namespace BPE3HL_Feleves_feladat
                 printGroup(group);
 
                 List<Player> players = new List<Player>(group.players);
-                for (int turnCount=1; players.Count > 1; turnCount++)
+                for (int  turnCount=1; players.Count > 1; turnCount++)
                 {
-                    Console.Write("Forduló"+turnCount+": [");
+                    write("Forduló"+turnCount+": [");
                     for (int i = 0; i <= players.Count - 2; i += 2)
                     {
                         var p1 = players[i];
@@ -82,28 +89,46 @@ namespace BPE3HL_Feleves_feladat
                         players.Remove(loser);
 
                         if (i != 0)
-                            Console.Write(", ");
+                            write(", ");
 
-                        Console.Write(p1.name + " - " + p2.name);
+                        write(p1.name + " - " + p2.name);
 
                     }
-                    Console.WriteLine("]");
+                    writeLine("]");
                 }
                 var winner = players.First();
                 printWinner(winner);
             }
+
+            file.Flush();
+            file.Close();
         }
 
         private void printGroup(Group group)
         {
-            Console.WriteLine("##########################");
-            Console.WriteLine("Kategória: " + group.category.name);
-            Console.WriteLine("Csoport: " + group.name);
-            Console.WriteLine("##########################");
+            writeLine("##########################");
+            writeLine("Kategória: " + group.category.name);
+            writeLine("Csoport: " + group.name);
+            writeLine("##########################");
         }
         private void printWinner(Player player)
         {
             Console.WriteLine("Nyertes: " + player.name);
+        }
+
+        //kiírja a szöveget fileba és consoleba is
+        public void write(string text)
+        {
+            Console.Write(text);
+            file.Write(text);
+
+
+        }
+        //kiírja a szöveget fileba és consoleba is, majd következő sorra ugrik
+        public void writeLine(string text)
+        {
+            Console.WriteLine(text);
+            file.WriteLine(text);
         }
 
     }

@@ -70,6 +70,7 @@ namespace BPE3HL_Feleves_feladat
 
             return tactics;
         }
+        
     }
 
 }

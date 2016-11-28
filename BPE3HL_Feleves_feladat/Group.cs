@@ -26,6 +26,7 @@ namespace BPE3HL_Feleves_feladat
         public bool canBeStarted()
         {
             return (players.Count != 0) && ((players.Count & (players.Count - 1)) == 0);
+
         }
 
         public bool isPlayerEligible(Player p)
