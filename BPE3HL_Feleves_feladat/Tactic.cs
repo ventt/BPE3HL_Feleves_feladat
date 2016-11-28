@@ -22,5 +22,15 @@ namespace BPE3HL_Feleves_feladat
             this.paper = paper;
             this.scissors = scrissors;
         }
+
+        public int choose()
+        {
+            double n = Program.random.NextDouble()*100;
+            if (n < rock)
+                return 0;
+            if (n > rock && n < scissors)
+                return 1;
+            return 2;
+        }
     }
 }

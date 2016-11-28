@@ -1,9 +1,13 @@
-﻿5
+﻿10
 Teszt Elek|23|TE1
 Teszt Csilla|30|TCS1
 Teszt Elek|24|TE2
 Papir Viktoria|20|PV1
 Ko Papir Attila|20|KPA1
-
+Jamp Imre|16|TE3
+Major Anna|17|TE4
+Pindur Pandur|21|TE5
+Oreg Bacsi|49|TE6
+Fiatalabb Bacsi|26|TE7
 
 

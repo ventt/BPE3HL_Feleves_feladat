@@ -10,18 +10,27 @@ namespace BPE3HL_Feleves_feladat
     {
         public List<Player> players = new List<Player>();
         public Category category;
+        public string name;
      
+        public Group(Category category, string name)
+        {
+            this.category = category;
+            this.name = name;
+
+        }
+
+        /// <summary>
+        /// eldönti hogy a csoport létszáma a 2 valamely hatványa-e
+        /// </summary>
+        /// <returns>bool</returns>
         public bool canBeStarted()
         {
-            
-            for (int i = 0; i < 100; i++)
-            {
-                if (players.Count == (int) Math.Pow(2, i))
-                {
-                    return true;
-                }
-            }
-            return false;
-        }   
+            return (players.Count != 0) && ((players.Count & (players.Count - 1)) == 0);
+        }
+
+        public bool isPlayerEligible(Player p)
+        {
+            return p.age >= category.ageMin && p.age <= category.ageMax;
+        }
     }
 }

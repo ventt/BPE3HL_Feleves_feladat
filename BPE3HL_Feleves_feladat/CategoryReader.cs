@@ -21,7 +21,7 @@ namespace BPE3HL_Feleves_feladat
                 string[] str = Utils.splitString(line, '|', 3);
 
                 if (str[0] == null || str[1] == null || str[2] == null) continue;
-                category.categoryName = str[0];
+                category.name = str[0];
                 category.ageMin = int.Parse(str[1]);
                 category.ageMax = int.Parse(str[2]);
 

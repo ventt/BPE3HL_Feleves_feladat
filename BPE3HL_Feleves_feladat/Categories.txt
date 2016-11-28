@@ -1,5 +1,2 @@
 ﻿junior|0|17
-young adult|18|23
-adult|24|29
-old adult|30|49
-senior|50|255
+adult|18|255

@@ -8,7 +8,7 @@ namespace BPE3HL_Feleves_feladat
 {
     class Category
     {
-        public string categoryName;
+        public string name;
         public int ageMin;
         public int ageMax;
 
@@ -16,7 +16,7 @@ namespace BPE3HL_Feleves_feladat
 
         public Category(string categoryName, int ageMin, int ageMax)
         {
-            this.categoryName = categoryName;
+            this.name = categoryName;
             this.ageMin = ageMin;
             this.ageMax = ageMax;
         }

@@ -22,6 +22,5 @@ namespace BPE3HL_Feleves_feladat
             this.age = age;
             this.tactic = tactic;
         }
-    
     }
 }
