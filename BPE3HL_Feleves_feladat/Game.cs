@@ -11,6 +11,9 @@ namespace BPE3HL_Feleves_feladat
     {
         List<Category> categories;
         StreamWriter file;
+        
+        public int unluckyPlayers = 0;
+        public int globalTurnCount = 0;
 
         public Game(List<Category> categories) {
             this.categories = categories;
@@ -71,6 +74,7 @@ namespace BPE3HL_Feleves_feladat
             // Vegigmegyunk minden kategorian es csoporton
             foreach (Category category in categories)
             {
+                
                 int groupCount = 0;
                 foreach (Group group in category.groups)
                 {
@@ -78,13 +82,18 @@ namespace BPE3HL_Feleves_feladat
 
                     // Ha a csoport nem indithato
                     if (!group.canBeStarted())
+                    {
+                        unluckyPlayers++;
                         continue;
-
+                    }
+                       
                     printGroup(group,category.name+" "+groupCount);
 
                     List<Player> players = new List<Player>(group.players);
                     for (int turnCount = 1; players.Count > 1; turnCount++)
                     {
+                        globalTurnCount++;
+
                         write("Forduló" + turnCount + ": [");
                         for (int i = 0; i <= players.Count - 2; i += 2)
                         {
@@ -107,6 +116,21 @@ namespace BPE3HL_Feleves_feladat
                 }
             }
 
+
+            // Statisztika
+            writeLine("\nStatisztikák: ");
+            writeLine("##########################\n");
+
+            // kategóriákon belül játékosok száma
+            writeLine("Játékosok száma:");
+            foreach (var category in categories)
+            {
+                Console.WriteLine(category.name + " " + category.playerCount(category));
+            }
+
+            writeLine("\nNem játszó játékosok száma: "+unluckyPlayers);
+            writeLine("Atlagos jatekok kategoriankent " + globalTurnCount / categories.Count + " volt.");
+
             file.Flush();
             file.Close();
         }
@@ -118,6 +142,7 @@ namespace BPE3HL_Feleves_feladat
             writeLine("Csoport: " + name);
             writeLine("##########################");
         }
+
         private void printWinner(Player player)
         {
             Console.WriteLine("Nyertes: " + player.name);

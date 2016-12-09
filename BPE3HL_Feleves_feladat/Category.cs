@@ -22,6 +22,17 @@ namespace BPE3HL_Feleves_feladat
             this.ageMax = ageMax;
         }
 
+        public int playerCount(Category category)
+        {
+            int count = 0;
+            foreach (var group in groups)
+            {
+               count = count + group.players.Count;
+            }
+
+            return count;
+        }
+
         public bool isWithinRange(int age)
         {
             return age >= ageMin && age <= ageMax;

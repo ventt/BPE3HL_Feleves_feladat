@@ -51,7 +51,7 @@ namespace BPE3HL_Feleves_feladat
             {
                 category.partitionGroups();
             }
-
+            
 
             // Jatekok futtatasa
             var game = new Game(categories);
