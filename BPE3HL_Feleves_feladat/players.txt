@@ -8,6 +8,5 @@ Jamp Imre|16|TE3
 Major Anna|17|TE4
 Pindur Pandur|21|TE5
 Oreg Bacsi|49|TE6
-Fiatalabb Bacsi|26|TE7
 
 

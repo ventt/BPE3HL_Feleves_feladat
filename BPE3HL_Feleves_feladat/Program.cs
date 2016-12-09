@@ -26,25 +26,35 @@ namespace BPE3HL_Feleves_feladat
             PlayerReader pr = new PlayerReader();
             var players = pr.readPlayers();
 
-            // Letrehozzuk a csoportokat
-            List<Group> groups = new List<Group>();
-            foreach(Category category in categories)
+            // Letrehozzuk a csoportokat a ketegoriakban
+            foreach (Category category in categories)
             {
-                groups.Add(new Group(category, category.name + " 1"));
+                category.groups.Add(new Group(category));
             }
 
             // Jatekosok hozzaadasa csoportokhoz
             foreach (var player in players)
             {
-                foreach (var group in groups)
+                foreach (var category in categories)
                 {
-                    if(group.isPlayerEligible(player)) 
-                        group.players.Add(player);
+                    foreach (var group in category.groups)
+                    {
+                        if (group.isPlayerEligible(player))
+                            group.players.Add(player);
+                    }
                 }
             }
 
+
+            // Játékosok particionálása minden kategoriaban
+            foreach (var category in categories)
+            {
+                category.partitionGroups();
+            }
+
+
             // Jatekok futtatasa
-            var game = new Game(groups);
+            var game = new Game(categories);
             game.start();
 
             Console.ReadKey();

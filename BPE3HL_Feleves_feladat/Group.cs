@@ -10,13 +10,10 @@ namespace BPE3HL_Feleves_feladat
     {
         public List<Player> players = new List<Player>();
         public Category category;
-        public string name;
      
-        public Group(Category category, string name)
+        public Group(Category category)
         {
             this.category = category;
-            this.name = name;
-
         }
 
         /// <summary>
@@ -25,7 +22,7 @@ namespace BPE3HL_Feleves_feladat
         /// <returns>bool</returns>
         public bool canBeStarted()
         {
-            return (players.Count != 0) && ((players.Count & (players.Count - 1)) == 0);
+            return (players.Count != 0) && ((players.Count & (players.Count - 1)) == 0) && players.Count != 1;
 
         }
 
